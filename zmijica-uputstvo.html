@@ -10,16 +10,61 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    <script src="skripta.js"></script>
+    <script src="zmijica-uputstvo.js"></script>
+    <link rel="stylesheet" href="zmijica.css">
     <title>SnakeGame🐍</title>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+                <h2>Uputstvo</h2>
+                <ul>
+                    <li>
+                        Odaberite velicinu table i nivo igre
+                    </li>
+                    <li>
+                        Tasterima (gore, dole, levo, desno) se krecite zmijicom po tabli
+                    </li>
+                    <li>
+                        Pokusajte da skupite sto vise hrane bez udaranja u zid ili u svoje telo
+                    </li>
+                    <li>
+                        Skupljanjem hrane se povecava velicina zmijice, kao i osvojeni poeni
+                    </li>
+                    <li>
+                        Hrana se stvara nakon sto je pojede zmijica
+                    </li>
+                    <li>
+                        Super hrana se stvara na svakih 10 sekundi i donosi dodatnih 10 poena
+                    </li>
+                </ul>
+                <hr>
+                <form action="">
+                    <h2>Podesavanja</h2>
+                    <div class="inputbox">
+                        <label for="">Velicina table</label>
+                        <br>
+                        <input type="radio" id="smallTable" name="table" value="small">Mala
+                        <br>
+                        <input type="radio" id="midleTable" name="table" checked value="midle">Srednja
+                        <br>
+                        <input type="radio" id="bigTable" name="table" value="big">Velika
+                    </div>
+                    
+                    <div class="inputbox">
+                        <label for="">Nivo</label>
+                        <br>
+                        <input type="radio" id="easyLevel" name="level" value="easy">Lako
+                        <br>
+                        <input type="radio" id="normalanLevel" name="level" checked value="normal">Normalno
+                        <br>
+                        <input type="radio" id="hardLevel" name="level" value="hard">Tesko
+                    </div>
+                    <button class="btn btn-info" id="Igraj">Igraj</button>
+                </form>
             </div>
         </div>
-    </div>
+    </section>
 </body>
 </html>

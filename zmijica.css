@@ -1,0 +1,45 @@
+.container-fluid{
+    display: flex;
+    justify-content: center;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+}
+
+/* .col-12{
+    background-color: lightblue;
+    text-align: center;
+} */
+
+#uputstvo{
+    border-radius: 2px;
+    border-style: black solid;
+}
+
+.form-box{
+    position: relative;
+    width: 700px;
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    background-color: blueviolet;
+    border-color: black;
+    border-radius: 10%;
+    align-items: center;
+}
+
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width:100%;
+    color: aliceblue;
+    background-color:aquamarine;
+}
+
+h2{
+    color: aliceblue;
+    text-decoration:solid;
+    font-size: 3em;
+    text-align: center;
+}
