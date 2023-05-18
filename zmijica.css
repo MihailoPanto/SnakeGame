@@ -43,3 +43,26 @@ h2{
     font-size: 3em;
     text-align: center;
 }
+.gameTable{
+    position: relative;
+    width: 700px;
+    height: 700px;
+    display: flex;
+}
+
+table{
+    border-color: black;
+    
+}
+
+.snake{
+    background-color: blueviolet;
+}
+
+.food{
+    background-color: rgb(47, 255, 75);
+}
+
+.superFood{
+    background-color: gold;
+}
