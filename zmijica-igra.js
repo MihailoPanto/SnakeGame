@@ -142,7 +142,7 @@ $(document).ready(function(){
 
     //provera da li je zavrsena igra
     function checkGameEnd(x,y){
-        if(x<0 || x>=m || y<0 || y>=n || snakeFields.includes(x*n+y)){
+        if(snakeFields.includes(x*n+y) || x<0 || x>=m || y<0 || y>=n){
             endGame();
             return;
         }
@@ -177,123 +177,119 @@ $(document).ready(function(){
     function moveSnake(){
         let x=Math.floor(snakeFields[0]/m);
         let y=Math.floor(snakeFields[0]%n);
-        switch(direction){
-            case "left":
-                checkGameEnd(x,y-1);
-                let id1=x*n+y-1;
-                if(id1==food){
-                    $("#"+id1).text("");
-                    $("#"+id1).removeClass("food");
-                    food=-1;
-                    growSnake(id1);
-                    foodInitialization();
-                    points++;
-                    pointsUpdate();
-                }else if(id1==superFood){
-                    $("#"+id1).text("");
-                    $("#"+id1).removeClass("superFood");
-                    superFood=-1;
-                    growSnake(id1);
-                    points+=10;
-                    pointsUpdate();
-                }else{
-                    growSnake(id1);
-                    let tail=snakeFields.pop();
-                    $("#"+tail).removeClass("snake");
-                }
-                if(snakeFields.length==m*n){
-                    alert("Pobedili ste!")
-                    endGame();
-                    return;
-                }
-                break;
-            case "up":
-                checkGameEnd(x-1,y);
-                let id2=(x-1)*n+y;
-                if(id2==food){
-                    $("#"+id2).text("");
-                    $("#"+id2).removeClass("food");
-                    food=-1;
-                    growSnake(id2);
-                    foodInitialization();
-                    points++;
-                    pointsUpdate();
-                }else if(id2==superFood){
-                    $("#"+id2).text("");
-                    $("#"+id2).removeClass("superFood");
-                    superFood=-1;
-                    growSnake(id2);
-                    points+=10;
-                    pointsUpdate();
-                }else{
-                    growSnake(id2);
-                    let tail=snakeFields.pop();
-                    $("#"+tail).removeClass("snake");
-                }
-                if(snakeFields.length==m*n){
-                    alert("Pobedili ste!")
-                    endGame();
-                    return;
-                }
-                break;
-            case "right":
-                checkGameEnd(x,y+1);
-                let id3=x*n+y+1;
-                if(id3==food){
-                    $("#"+id3).text("");
-                    $("#"+id3).removeClass("food");
-                    food=-1;
-                    growSnake(id3);
-                    foodInitialization();
-                    points++;
-                    pointsUpdate();
-                }else if(id3==superFood){
-                    $("#"+id3).text("");
-                    $("#"+id3).removeClass("superFood");
-                    superFood=-1;
-                    growSnake(id3);
-                    points+=10;
-                    pointsUpdate();
-                }else{
-                    growSnake(id3);
-                    let tail=snakeFields.pop();
-                    $("#"+tail).removeClass("snake");
-                }
-                if(snakeFields.length==m*n){
-                    alert("Pobedili ste!")
-                    endGame();
-                    return;
-                }
-                break;
-            case "down":
-                checkGameEnd(x+1,y);
-                let id4=(x+1)*n+y;
-                if(id4==food){
-                    $("#"+id4).text("");
-                    $("#"+id4).removeClass("food");
-                    food=-1;
-                    growSnake(id4);
-                    foodInitialization();
-                    points++;
-                    pointsUpdate();
-                }else if(id4==superFood){
-                    $("#"+id4).text("");
-                    $("#"+id4).removeClass("superFood");
-                    superFood=-1;
-                    growSnake(id4);
-                    points+=10;
-                    pointsUpdate();
-                }else{
-                    growSnake(id4);
-                    let tail=snakeFields.pop();
-                    $("#"+tail).removeClass("snake");
-                }
-                if(snakeFields.length==m*n){
-                    alert("Pobedili ste!")
-                    endGame();
-                    return;
-                }
-                break;
+        if(direction=="left"){
+            checkGameEnd(x,y-1);
+            let id1=x*n+y-1;
+            if(id1==superFood){
+                $("#"+id1).text("");
+                $("#"+id1).removeClass("superFood");
+                superFood=-1;
+                growSnake(id1);
+                points+=10;
+                pointsUpdate();
+            }
+            else if(id1==food){
+                $("#"+id1).text("");
+                $("#"+id1).removeClass("food");
+                food=-1;
+                growSnake(id1);
+                foodInitialization();
+                points++;
+                pointsUpdate();
+            }else{
+                growSnake(id1);
+                let tail=snakeFields.pop();
+                $("#"+tail).removeClass("snake");
+            }
+            if(snakeFields.length==m*n){
+                alert("Pobedili ste!")
+                endGame();
+                return;
+            }
+        }else if(direction=="up"){
+            checkGameEnd(x-1,y);
+            let id2=(x-1)*n+y;
+            if(id2==superFood){
+                $("#"+id2).text("");
+                $("#"+id2).removeClass("superFood");
+                superFood=-1;
+                growSnake(id2);
+                points+=10;
+                pointsUpdate();
+            }else if(id2==food){
+                $("#"+id2).text("");
+                $("#"+id2).removeClass("food");
+                food=-1;
+                growSnake(id2);
+                foodInitialization();
+                points++;
+                pointsUpdate();
+            }else{
+                growSnake(id2);
+                let tail=snakeFields.pop();
+                $("#"+tail).removeClass("snake");
+            }
+            if(snakeFields.length==m*n){
+                alert("Pobedili ste!")
+                endGame();
+                return;
+            }
+        }else if(direction=="right"){
+            checkGameEnd(x,y+1);
+            let id3=x*n+y+1;
+            if(id3==superFood){
+                $("#"+id3).text("");
+                $("#"+id3).removeClass("superFood");
+                superFood=-1;
+                growSnake(id3);
+                points+=10;
+                pointsUpdate();
+            }else if(id3==food){
+                $("#"+id3).text("");
+                $("#"+id3).removeClass("food");
+                food=-1;
+                growSnake(id3);
+                foodInitialization();
+                points++;
+                pointsUpdate();
+            }else{
+                growSnake(id3);
+                let tail=snakeFields.pop();
+                $("#"+tail).removeClass("snake");
+            }
+            if(snakeFields.length==m*n){
+                alert("Pobedili ste!")
+                endGame();
+                return;
+            }
+        }else if(direction=="down"){
+            checkGameEnd(x+1,y);
+            let id4=(x+1)*n+y;
+            if(id4==superFood){
+                $("#"+id4).text("");
+                $("#"+id4).removeClass("superFood");
+                superFood=-1;
+                growSnake(id4);
+                points+=10;
+                pointsUpdate();
+            }else if(id4==food){
+                $("#"+id4).text("");
+                $("#"+id4).removeClass("food");
+                food=-1;
+                growSnake(id4);
+                foodInitialization();
+                points++;
+                pointsUpdate();
+            }else{
+                growSnake(id4);
+                let tail=snakeFields.pop();
+                $("#"+tail).removeClass("snake");
+            }
+            if(snakeFields.length==m*n){
+                alert("Pobedili ste!")
+                endGame();
+                return;
+            }
         }
     }
 
