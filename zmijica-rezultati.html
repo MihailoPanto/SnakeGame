@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.6.4.js"
+    <!-- <script src="https://code.jquery.com/jquery-3.6.4.js"
 			  integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
 			  crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
 
-    <script src="zmijica-uputstvo.js"></script>
+    <script src="zmijica-dodatno/jquery-3.6.4.js"></script>
+    <link rel="stylesheet" href="zmijica-dodatno/bootstrap.min.css">
+    <script src="zmijica-dodatno/bootstrap.min.js"></script>
+
+    <script src="zmijica-rezultati.js"></script>
     <link rel="stylesheet" href="zmijica.css">
     <title>SnakeGame🐍</title>
 </head>
@@ -20,11 +24,12 @@
             <div class="form-value">
                 <h2>Rezultati</h2>
                 <div id="results">
-                    <table id="topResults"></table>
+                    <table id="topResults" class="resultTable"></table>
                 </div>
                 <hr>
+                <h2>Trenutni rezultat</h2>
                 <div id="currR">
-                    <table id="currUser">
+                    <table id="currUser" class="resultTable">
                         
                     </table>
                     <!-- Ime: <span id="currUsername"></span>
@@ -33,7 +38,9 @@
                 </div>
                 <br>
                 <br>
+                <button class="btn btn-info" id="uputstvoPage">Pocetna strana</button>
             </div>
     </section>
+    
 </body>
 </html>

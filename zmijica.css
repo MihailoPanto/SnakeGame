@@ -66,3 +66,17 @@ table{
 .superFood{
     background-color: gold;
 }
+
+.resultTable{
+    /* text-align: right; */
+    position: relative;
+    width: 400px;
+    height: 200px;
+    /* display: flex; */
+    justify-content: center;
+    /* column-gap: 40px; */
+}
+
+#topResults tr{
+    width:100%
+}

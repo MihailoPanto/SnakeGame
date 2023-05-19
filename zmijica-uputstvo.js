@@ -10,7 +10,10 @@ $(document).ready(function(){
         if(tb && lv){
             localStorage.setItem("table",tb);
             localStorage.setItem("level",lv)
-            window.open("zmijica-igra.html");
+
+
+            // window.open("zmijica-igra.html");
+            window.open("zmijica-igra.html" ,"_self");
         }
         
         

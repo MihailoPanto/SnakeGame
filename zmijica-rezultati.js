@@ -1,6 +1,6 @@
 $(document).ready(function(){
     let bestResults=localStorage.getItem("topResults");
-    bestResults=JSON.parse(result);
+    bestResults=JSON.parse(bestResults);
 
     let result=localStorage.getItem("currentResult");
     result=JSON.parse(result);
@@ -9,35 +9,32 @@ $(document).ready(function(){
 
     function makeCurr(){
         let row1=$("<tr></tr>");
-        let row2=$("<tr></tr>");
-        let cell1=$("<td></td>").text("Ime: ");
-        let cell2=$("<td></td>").text(result.username);
-        let cell3=$("<td></td>").text("Poeni: ");
-        let cell4=$("<td></td>").text(result.points);
+        let cell1=$("<td></td>").text("Ime----"+result.username);
+        
+        let cell2=$("<td></td>").text("Poeni----"+result.points);
+        
         row1.append(cell1);
+        // row1.append($("<td></td>").text(" .......... "));
         row1.append(cell2);
-        row2.append(cell3);
-        row2.append(cell4);
         
         $("#currUser").append(row1);
-        $("#currUser").append(row2);
-        
     }
 
     function listAll(){
         bestResults.forEach(element => {
             let row1=$("<tr></tr>");
-            let cell1=$("<td></td>").text("Ime: ");
-            let cell2=$("<td></td>").text(element.username);
-            let cell3=$("<td></td>").text("Poeni: ");
-            let cell4=$("<td></td>").text(element.points);
+            let cell1=$("<td></td>").text("Ime----"+element.username);
+            let cell2=$("<td></td>").text("Poeni----"+element.points);
             row1.append(cell1);
+            // row1.append($("<td></td>").text(" .......... "));
             row1.append(cell2);
-            row1.append(cell3);
-            row1.append(cell4);
             $("#topResults").append(row1);
         });
     }
+
+    $("#uputstvoPage").click(function(){
+        window.open("zmijica-uputstvo.html", "_self");
+    });
 
     listAll();
     makeCurr();

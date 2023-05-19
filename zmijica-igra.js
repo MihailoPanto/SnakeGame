@@ -11,14 +11,12 @@ $(document).ready(function(){
     let food=-1;
     let superFood=-1;
     let direction="right";
-    let currDirection="";
     let started=false;
     let ended=false;
     let points=0;
 
     let snakeInterval;
     let foodInterval;
-    let disapereInterval;
     
 
     //postavljanje zmijice da krece uvek od sredine(priblizno sredine)
@@ -62,7 +60,7 @@ $(document).ready(function(){
         $("#"+index).addClass("superFood");
         $("#"+index).text("S");
         //da nestaju posle 3 do 9 sekundi
-        // disapereInterval=setInterval(superFoodDelete,Math.floor(Math.random()*(9000-3000+1000)+3000));
+        setTimeout(superFoodDelete,Math.floor(Math.random(9-3+1)+3)*1000);
     }
 
     
@@ -108,16 +106,17 @@ $(document).ready(function(){
         let topResults=localStorage.getItem("topResults");
         topResults=JSON.parse(topResults);
         if(!topResults) topResults=[];
-        if(topResults.length <5 || topResults[4].points<res.points){
+        if(topResults.length <5 || (topResults.length==5 && topResults[4].points<res.points)){
             topResults.push(res);
             topResults.sort(komparator);
+            if(topResults.length==6)topResults.pop();
             localStorage.setItem("topResults",JSON.stringify(topResults));
         }
         
     }
 
     function komparator(a,b){
-        return parseInt(a.points)-parseInt(b.points);
+        return parseInt(b.points)-parseInt(a.points);
     }
 
     //zavrsava se igra
@@ -130,10 +129,11 @@ $(document).ready(function(){
         started=false;
         ended=true;
 
-        let user=prompt("Enter ypur username");
-        if(!user) user="Unknown";
+        let user=prompt("Unesite korisnicko ime");
+        if(!user) user="Nepoznato";
 
         makeNewResult(user,points);
+        points=0;
         // window.open("zmijica-rezultati.html","_blank");
         //da otvori u istom prozoru
         window.open("zmijica-rezultati.html", "_self");
@@ -160,8 +160,17 @@ $(document).ready(function(){
         snakeFields=newArray;
     }
 
-    function pointsUpdate(x){
-        
+    //osvezavanje poena
+    function pointsUpdate(){
+        let bestResult=localStorage.getItem("bestResult");
+        //resultNow
+        //resultBest
+        $("#resultNow").text(points);
+        if(!bestResult || points>bestResult){
+            localStorage.setItem("bestResult",points);    
+            bestResult=points; 
+        }
+        $("#resultBest").text(bestResult);
     }
 
     // Pomeranje zmijice posle intervala odredjenog izabranim levelom
@@ -178,17 +187,22 @@ $(document).ready(function(){
                     food=-1;
                     growSnake(id1);
                     foodInitialization();
+                    points++;
+                    pointsUpdate();
                 }else if(id1==superFood){
                     $("#"+id1).text("");
                     $("#"+id1).removeClass("superFood");
                     superFood=-1;
                     growSnake(id1);
+                    points+=10;
+                    pointsUpdate();
                 }else{
                     growSnake(id1);
                     let tail=snakeFields.pop();
                     $("#"+tail).removeClass("snake");
                 }
                 if(snakeFields.length==m*n){
+                    alert("Pobedili ste!")
                     endGame();
                     return;
                 }
@@ -202,17 +216,22 @@ $(document).ready(function(){
                     food=-1;
                     growSnake(id2);
                     foodInitialization();
+                    points++;
+                    pointsUpdate();
                 }else if(id2==superFood){
                     $("#"+id2).text("");
                     $("#"+id2).removeClass("superFood");
                     superFood=-1;
                     growSnake(id2);
+                    points+=10;
+                    pointsUpdate();
                 }else{
                     growSnake(id2);
                     let tail=snakeFields.pop();
                     $("#"+tail).removeClass("snake");
                 }
                 if(snakeFields.length==m*n){
+                    alert("Pobedili ste!")
                     endGame();
                     return;
                 }
@@ -226,17 +245,22 @@ $(document).ready(function(){
                     food=-1;
                     growSnake(id3);
                     foodInitialization();
+                    points++;
+                    pointsUpdate();
                 }else if(id3==superFood){
                     $("#"+id3).text("");
                     $("#"+id3).removeClass("superFood");
                     superFood=-1;
                     growSnake(id3);
+                    points+=10;
+                    pointsUpdate();
                 }else{
                     growSnake(id3);
                     let tail=snakeFields.pop();
                     $("#"+tail).removeClass("snake");
                 }
                 if(snakeFields.length==m*n){
+                    alert("Pobedili ste!")
                     endGame();
                     return;
                 }
@@ -250,28 +274,33 @@ $(document).ready(function(){
                     food=-1;
                     growSnake(id4);
                     foodInitialization();
+                    points++;
+                    pointsUpdate();
                 }else if(id4==superFood){
                     $("#"+id4).text("");
                     $("#"+id4).removeClass("superFood");
                     superFood=-1;
                     growSnake(id4);
+                    points+=10;
+                    pointsUpdate();
                 }else{
                     growSnake(id4);
                     let tail=snakeFields.pop();
                     $("#"+tail).removeClass("snake");
                 }
                 if(snakeFields.length==m*n){
+                    alert("Pobedili ste!")
                     endGame();
                     return;
                 }
                 break;
         }
-        currDirection=direction;
     }
 
     gameInitialization();
     snakeInitialization();
     foodInitialization();
+    pointsUpdate();
 
     //pokretanje igre na dugme Start Game
     $("#startGame").click(function(){
@@ -291,7 +320,7 @@ $(document).ready(function(){
         }
         snakeInterval=setInterval(moveSnake,interval);
         foodInterval=setInterval(superFoodInitialization,10000);
-        
+        // disapereInterval=setInterval(superFoodDelete,15000);
     });
 
     //promena pravca zmijice nakon sto je igra pokrenuta
